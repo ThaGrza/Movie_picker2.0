@@ -1,0 +1,34 @@
+.movie_container{
+  /* background-color: red; */
+  /* display: flex; */
+  text-align: center;
+
+}
+
+.genre_selectContainer{
+
+}
+
+.genreButton{
+  margin: 10px;
+  /* display: flex; */
+}
+
+.genre_options{
+
+}
+
+.movie_buttonContainer{
+  display: center;
+}
+
+.find_movieButton{
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: red;
+  text-align: center;
+  font-size: 34px;
+  color: white;
+  font-weight: 800;
+}
