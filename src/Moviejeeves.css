@@ -1,25 +1,21 @@
 .movie_container{
-  /* background-color: red; */
-  /* display: flex; */
-  text-align: center;
-
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.genre_selectContainer{
-
+.buttons_container {
+  display: flex;
+  justify-content: center;
 }
 
-.genreButton{
+.genre_button{
   margin: 10px;
-  /* display: flex; */
 }
 
-.genre_options{
-
-}
-
-.movie_buttonContainer{
-  display: center;
+.button_container{
+  text-align: center;
 }
 
 .find_movieButton{
