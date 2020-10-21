@@ -21,10 +21,10 @@
 .find_movieButton{
   width: 250px;
   height: 250px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   background-color: red;
   text-align: center;
   font-size: 34px;
-  color: white;
+  color: black;
   font-weight: 800;
 }
