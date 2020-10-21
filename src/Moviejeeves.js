@@ -1,7 +1,5 @@
 import React from 'react'
 import './Moviejeeves.css';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 
 class Moviejeeves extends React.Component{
@@ -10,8 +8,10 @@ class Moviejeeves extends React.Component{
     this.state = {
       platform: '',
       genre: '',
-      search: ''
     };
+    this.genreChange = this.genreChange.bind(this);
+    this.platformChange = this.platformChange.bind(this);
+    this.searchChange = this.searchChange.bind(this);
   }
 
   genreChange(event){
@@ -23,36 +23,45 @@ class Moviejeeves extends React.Component{
   };
 
   searchChange(event){
-    this.setState({search: event.target.value})
+    // Combine Platform and Genre into url query.
+
+    // Ajax call to movie database
+
+    // render 1 movie (second press render another, remove the original)
     console.log(this.state)
-    console.log(" IS THIS BUTTON WORKING"); 
+    console.log(" WHY IS STATE NOT WORKING ERMAHGSDFDFS"); 
   }
   
 
+  
   render(){
     return(
-    <div className='movie_container'>
-      <div className="buttons_container">
-        <DropdownButton id="dropdown-basic-button" onChange={this.genreChange.bind(this)} className='genre_button' title="Genre">
-          <Dropdown.Item>Action</Dropdown.Item>
-          <Dropdown.Item>Comedy</Dropdown.Item>
-          <Dropdown.Item href="/">Drama</Dropdown.Item>
-          <Dropdown.Item href="/">Horror</Dropdown.Item>
-          <Dropdown.Item href="/">Thriller</Dropdown.Item>
-          <Dropdown.Item href="/">Animated</Dropdown.Item>
-          <Dropdown.Item href="/">Romantic Comedy</Dropdown.Item>
-        </DropdownButton>
-        <DropdownButton id="dropdown-basic-button" onChange={this.platformChange.bind(this)} className='genre_button' title="Platform">
-          <Dropdown.Item id="Netflix" href="/">Netflix</Dropdown.Item>
-          <Dropdown.Item href="/">Hulu</Dropdown.Item>
-          <Dropdown.Item href="/">Disney+</Dropdown.Item>
-          <Dropdown.Item href="/">HBO</Dropdown.Item>
-        </DropdownButton>
+      <div className='movie_container'>
+        <div className='buttons_container'>
+          <select className='genre_button' onChange={this.genreChange}>
+            <option selected value=''>Genre</option>
+            <option value='action'>Action</option>
+            <option value='horror'>Horror</option>
+            <option value='comedy'>Comedy</option>
+            <option value='animated'>Animated</option>
+            <option value='thriller'>Thriller</option>
+            <option value='rom com'>Rom Com</option>
+            <option value='drama'>Drama</option>
+
+          </select>
+          <select className='genre_button' onChange={this.platformChange}>
+            <option selected value=''>Platform</option>
+            <option value='netflix'>Netflix</option>
+            <option value='hulu'>Hulu</option>
+            <option value='disney'>Disney+</option>
+            <option value='hbo'>HBO</option>
+          </select>
+        </div>
+        <div className='button_container'>
+        <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
+        </div>
       </div>
-      <div className="button_container">
-        <button className='find_movieButton' onClick={this.searchChange.bind(this)} >GIVE ME A MOVIE</button>
-      </div>
-    </div>
+
     )
   }
 }

@@ -19,12 +19,12 @@
 }
 
 .find_movieButton{
-  width: 250px;
-  height: 250px;
-  /* border-radius: 50%; */
+  border-radius: 5px;
   background-color: red;
   text-align: center;
   font-size: 34px;
   color: black;
   font-weight: 800;
+  padding: 20px;
+  margin-top: 20px;
 }
