@@ -8,6 +8,7 @@ class Moviejeeves extends React.Component{
     this.state = {
       platform: '',
       genre: '',
+      movie: ''
     };
     this.genreChange = this.genreChange.bind(this);
     this.platformChange = this.platformChange.bind(this);
@@ -23,17 +24,18 @@ class Moviejeeves extends React.Component{
   };
 
   searchChange(event){
-    // Combine Platform and Genre into url query.
-
+      var genreQuery = this.state.genre;
+      var platformQuery =  this.state.platform;
+      var moviesQuery = 'https//https://www.themoviedb.org/?language=en-US' + genreQuery + '&' + platformQuery;
     // Ajax call to movie database
 
     // render 1 movie (second press render another, remove the original)
     console.log(this.state)
-    console.log(" WHY IS STATE NOT WORKING ERMAHGSDFDFS"); 
+    this.setState({movie: true});
   }
-  
 
-  
+
+
   render(){
     return(
       <div className='movie_container'>
@@ -58,10 +60,16 @@ class Moviejeeves extends React.Component{
           </select>
         </div>
         <div className='button_container'>
-        <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
+          <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
         </div>
-      </div>
 
+        {this.state.movie === true && <div className='movie_display'>
+          <span className='movie_title'></span>
+          <img src='#' alt='Coming Soon'></img>
+          </div>
+        }
+        
+      </div>
     )
   }
 }
