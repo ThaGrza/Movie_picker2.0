@@ -1,17 +1,27 @@
-Get api routes for value of genre's for each platform.{
-if(genreQuery.value === Comedy){
-    genreApiRoute = whateverApiRouteIs;
+# Movie Jeeves
 
-}
+ ## Screenshots / Gifs
+ ![Screenshot](/src/images/screenshot.png)
 
-Ajax request with function return info 
-
+ ## Motivation
 
 
-APIKEY = 5f9630b664fee3f1c639e0ae94090867;
+ ## How to
 
 
+ ## Tech/framework used
+ <b> Built with </b>
+ - [Javascript](https://www.javascript.com/)
+ - [React](https://reactjs.org/)
 
+ ## Installation
 
+ ## API Reference
+ - [The Movie Database](https://www.themoviedb.org/)
 
+ ## Credits
+ Andrew Griswold
 
+ ## License
+ This project is covered by the MIT license.
+ MIT © Andrew Griswold
