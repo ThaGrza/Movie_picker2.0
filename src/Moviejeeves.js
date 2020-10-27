@@ -10,6 +10,7 @@ function apiGenerator(genre, platform){
   // turn platform into query
 
   // send to displayMovie
+  
 }
 
 class Moviejeeves extends React.Component{
