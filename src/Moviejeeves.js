@@ -1,6 +1,16 @@
 import React from 'react'
 import './Moviejeeves.css';
+require('dotenv').config();
 
+
+function apiGenerator(genre, platform){
+  var key = process.env.APIKEY
+  // turn genre into query
+
+  // turn platform into query
+
+  // send to displayMovie
+}
 
 class Moviejeeves extends React.Component{
   constructor(props){
@@ -17,24 +27,21 @@ class Moviejeeves extends React.Component{
 
   genreChange(event){
     this.setState({genre: event.target.value})
-  };
+  }
 
   platformChange(event){
     this.setState({platform: event.target.value})
-  };
-
-  searchChange(event){
-      var genreQuery = this.state.genre;
-      var platformQuery =  this.state.platform;
-      var moviesQuery = 'https//https://www.themoviedb.org/?language=en-US' + genreQuery + '&' + platformQuery;
-    // Ajax call to movie database
-
-    // render 1 movie (second press render another, remove the original)
-    console.log(this.state)
-    this.setState({movie: true});
   }
 
+  searchChange(event){
+    var genreQuery = this.state.genre;
+    var platformQuery =  this.state.platform;
+    apiGenerator(genreQuery, platformQuery);
+  }
 
+  displayMovie(apiQuery){
+
+  }
 
   render(){
     return(
@@ -66,10 +73,9 @@ class Moviejeeves extends React.Component{
         {this.state.movie === true && <div className='movie_display'>
           <span className='movie_title'></span>
           <img src='#' alt='Coming Soon'></img>
-          </div>
+        </div>
         }
-        
-      </div>
+    </div>
     )
   }
 }
