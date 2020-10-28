@@ -40,8 +40,9 @@ class Moviejeeves extends React.Component{
     Axios.get(query)
       .then(res => {
         console.log(res);
-        this.setState({movie: true});
-        this.setState({movieImg: res.data.img})
+        this.setState({movieDisplay: true});
+        this.setState({movieImg: res.data.results[0].backdrop_path})
+        console.log(this.state.movieImg)
       })
       .catch(err => {
         console.log(err);
@@ -71,15 +72,14 @@ class Moviejeeves extends React.Component{
             <option value='hbo'>HBO</option>
           </select>
         </div>
+        {this.state.movieDisplay === true && <div className='movie_display'>
+          <span className='movie_title'></span>
+          <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} alt='Coming Soon'></img>
+        </div>
+        }
         <div className='button_container'>
           <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
         </div>
-
-        {this.state.movieDisplay === true && <div className='movie_display'>
-          <span className='movie_title'></span>
-          <img src={this.state.movieImg} alt='Coming Soon'></img>
-        </div>
-        }
     </div>
     )
   }
