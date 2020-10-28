@@ -1,16 +1,26 @@
 import React from 'react'
 import './Moviejeeves.css';
+import Axios from 'axios';
 require('dotenv').config();
 
-
 function apiGenerator(genre, platform){
+  console.log(process.env.APIKEY);
   var key = process.env.APIKEY
   // turn genre into query
 
+  console.log(genre, platform);
   // turn platform into query
 
   // send to displayMovie
-  
+  var query = 'https://api.themoviedb.org/3/search/movie?api_key=' + key + '&query=Jack+Reacher';
+
+  Axios.get( query)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+  })
 }
 
 class Moviejeeves extends React.Component{
@@ -41,6 +51,7 @@ class Moviejeeves extends React.Component{
   }
 
   displayMovie(apiQuery){
+
 
   }
 
