@@ -3,31 +3,15 @@ import './Moviejeeves.css';
 import Axios from 'axios';
 require('dotenv').config();
 
-function apiGenerator(genre, platform){
-  var key = process.env.REACT_APP_API_KEY;
-  // turn genre into query
-
-  // turn platform into query
-
-  // send to displayMovie
-  var query = 'https://api.themoviedb.org/3/search/movie?api_key=' + key + '&query=Jack+Reacher';
-
-  Axios.get(query)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-  })
-}
-
 class Moviejeeves extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       platform: '',
       genre: '',
-      movie: ''
+      movieDisplay: '',
+      movieImg: '',
+      movieName: ''
     };
     this.genreChange = this.genreChange.bind(this);
     this.platformChange = this.platformChange.bind(this);
@@ -43,14 +27,25 @@ class Moviejeeves extends React.Component{
   }
 
   searchChange(event){
+    var key = process.env.REACT_APP_API_KEY;
     var genreQuery = this.state.genre;
     var platformQuery =  this.state.platform;
-    apiGenerator(genreQuery, platformQuery);
-  }
-
-  displayMovie(apiQuery){
-
-
+    // turn genre into query
+  
+    // turn platform into query
+  
+    // send to displayMovie
+    var query = 'https://api.themoviedb.org/3/search/movie?api_key=' + key + '&query=Jack+Reacher';
+  
+    Axios.get(query)
+      .then(res => {
+        console.log(res);
+        this.setState({movie: true});
+        this.setState({movieImg: res.data.img})
+      })
+      .catch(err => {
+        console.log(err);
+    });
   }
 
   render(){
@@ -58,7 +53,7 @@ class Moviejeeves extends React.Component{
       <div className='movie_container'>
         <div className='buttons_container'>
           <select className='genre_button' onChange={this.genreChange}>
-            <option selected value=''>Genre</option>
+            <option defaultValue=''>Genre</option>
             <option value='action'>Action</option>
             <option value='horror'>Horror</option>
             <option value='comedy'>Comedy</option>
@@ -69,7 +64,7 @@ class Moviejeeves extends React.Component{
 
           </select>
           <select className='genre_button' onChange={this.platformChange}>
-            <option selected value=''>Platform</option>
+            <option defaultValue=''>Platform</option>
             <option value='netflix'>Netflix</option>
             <option value='hulu'>Hulu</option>
             <option value='disney'>Disney+</option>
@@ -80,9 +75,9 @@ class Moviejeeves extends React.Component{
           <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
         </div>
 
-        {this.state.movie === true && <div className='movie_display'>
+        {this.state.movieDisplay === true && <div className='movie_display'>
           <span className='movie_title'></span>
-          <img src='#' alt='Coming Soon'></img>
+          <img src={this.state.movieImg} alt='Coming Soon'></img>
         </div>
         }
     </div>
