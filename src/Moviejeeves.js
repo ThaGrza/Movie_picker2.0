@@ -3,6 +3,11 @@ import './Moviejeeves.css';
 import Axios from 'axios';
 require('dotenv').config();
 
+function randomizer(genre, platform){
+  let randMovie = Math.floor(Math.random() * 1000) + 1;
+}
+
+
 class Moviejeeves extends React.Component{
   constructor(props){
     super(props);
@@ -27,16 +32,16 @@ class Moviejeeves extends React.Component{
   }
 
   searchChange(event){
-    var key = process.env.REACT_APP_API_KEY;
-    var genreQuery = this.state.genre;
-    var platformQuery =  this.state.platform;
-    // turn genre into query
-  
-    // turn platform into query
-  
-    // send to displayMovie
-    var query = 'https://api.themoviedb.org/3/search/movie?api_key=' + key + '&query=Jack+Reacher';
-  
+    let key = process.env.REACT_APP_API_KEY;
+    let genreQuery = this.state.genre;
+    let platformQuery =  this.state.platform;
+    let baseUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' + key + '&';
+
+    // Change query url to right paths
+    let query = baseUrl + genreQuery + platformQuery;
+    console.log(query);
+
+
     Axios.get(query)
       .then(res => {
         console.log(res);
