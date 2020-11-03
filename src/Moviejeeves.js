@@ -3,10 +3,6 @@ import './Moviejeeves.css';
 import Axios from 'axios';
 require('dotenv').config();
 
-function randomizer(genre, platform){
-  let randMovie = Math.floor(Math.random() * 1000) + 1;
-}
-
 
 class Moviejeeves extends React.Component{
   constructor(props){
@@ -32,26 +28,29 @@ class Moviejeeves extends React.Component{
   }
 
   searchChange(event){
-    let key = process.env.REACT_APP_API_KEY;
     let genreQuery = this.state.genre;
     let platformQuery =  this.state.platform;
-    let baseUrl = 'https://api.themoviedb.org/3/search/movie?api_key=' + key + '&';
+    let key = process.env.REACT_APP_API_KEY;
+    let baseUrl = 'https://api.themoviedb.org/3/movie/'
+    let randomMovie = Math.floor(Math.random() * 10000) + 1;
+    let language = '&language=en-US';
 
-    // Change query url to right paths
-    let query = baseUrl + genreQuery + platformQuery;
-    console.log(query);
+    let query = baseUrl + randomMovie + '?api_key=' + key + language;
 
 
     Axios.get(query)
       .then(res => {
         console.log(res);
         this.setState({movieDisplay: true});
-        this.setState({movieImg: res.data.results[0].backdrop_path})
+        this.setState({movieName: res.data.title})
+        this.setState({movieImg: res.data.backdrop_path})
         console.log(this.state.movieImg)
+        console.log(this.state.movieName)
       })
       .catch(err => {
         console.log(err);
     });
+
   }
 
   render(){
@@ -78,7 +77,7 @@ class Moviejeeves extends React.Component{
           </select>
         </div>
         {this.state.movieDisplay === true && <div className='movie_display'>
-          <span className='movie_title'></span>
+          <span className='movie_title'>{this.state.movieName}</span>
           <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} alt='Coming Soon'></img>
         </div>
         }
