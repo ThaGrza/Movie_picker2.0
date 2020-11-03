@@ -29,21 +29,27 @@ class Moviejeeves extends React.Component{
     this.setState({platform: event.target.value})
   }
 
-  getMovie(query){
+  randomizer(genre, platform){
+    let key = process.env.REACT_APP_API_KEY;
+    let baseUrl = 'https://api.themoviedb.org/3/movie/'
+    let randomMovie = Math.floor(Math.random() * 10000) + 1;
+    let language = '&language=en-US';
+    let query = baseUrl + randomMovie + '?api_key=' + key + language;
+    this.getMovie(query);
+  }
 
+
+  getMovie(query){
     Axios.get(query)
       .then(res => {
         console.log(res);
         this.setState({movieDisplay: true});
         this.setState({movieName: res.data.title})
         this.setState({movieImg: res.data.backdrop_path})
-        console.log(this.state.movieImg)
-        console.log(this.state.movieName)
       })
       .catch(err => {
         if(err.response.status === 404){
-          this.setState({movieName: 'Could not find movie, Please try again'});
-          this.setState({movieImg: ''});
+          this.randomizer()
         }
         console.log(err);
     });
@@ -52,13 +58,7 @@ class Moviejeeves extends React.Component{
   searchChange(event){
     let genreQuery = this.state.genre;
     let platformQuery =  this.state.platform;
-    let key = process.env.REACT_APP_API_KEY;
-    let baseUrl = 'https://api.themoviedb.org/3/movie/'
-    let randomMovie = Math.floor(Math.random() * 10000) + 1;
-    let language = '&language=en-US';
-
-    let query = baseUrl + randomMovie + '?api_key=' + key + language;
-    this.getMovie(query);
+    this.randomizer(genreQuery, platformQuery);
   }
 
   render(){
@@ -67,14 +67,24 @@ class Moviejeeves extends React.Component{
         <div className='buttons_container'>
           <select className='genre_button' onChange={this.genreChange}>
             <option defaultValue=''>Genre</option>
-            <option value='action'>Action</option>
-            <option value='horror'>Horror</option>
-            <option value='comedy'>Comedy</option>
-            <option value='animated'>Animated</option>
-            <option value='thriller'>Thriller</option>
-            <option value='rom com'>Rom Com</option>
-            <option value='drama'>Drama</option>
-
+            <option value='28'>Action</option>
+            <option value='12'>Adventure</option>
+            <option value='16'>Animation</option>
+            <option value='35'>Comedy</option>
+            <option value='80'>Crime</option>
+            <option value='99'>Documentary</option>
+            <option value='18'>Drama</option>
+            <option value='10751'>Family</option>
+            <option value='14'>Fantasy</option>
+            <option value='36'>History</option>
+            <option value='27'>Horror</option>
+            <option value='10402'>Music</option>
+            <option value='9648'>Mystery</option>
+            <option value='10749'>Romance</option>
+            <option value='878'>Science Fiction</option>
+            <option value='53'>Thriller</option>
+            <option value='10752'>War</option>
+            <option value='37'>Western</option>
           </select>
           <select className='genre_button' onChange={this.platformChange}>
             <option defaultValue=''>Platform</option>
