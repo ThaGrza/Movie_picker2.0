@@ -29,10 +29,8 @@
   margin-top: 20px;
 }
 
-.movie_title{
-  margin: 10px;
-  font-weight: 600;
-  font-size: 2rem;
+.find_movieButton:active {
+  transform: translateY(4px);
 }
 
 .movie_display{
@@ -41,6 +39,17 @@
   flex-direction: column;
 }
 
+.movie_title{
+  margin: 10px;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
 .movie_image{
+  border-radius: 10px;
   object-fit: contain;
+}
+
+img{
+  border-radius: 5px;
 }
