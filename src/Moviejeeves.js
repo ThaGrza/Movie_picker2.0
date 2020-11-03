@@ -4,6 +4,8 @@ import Axios from 'axios';
 require('dotenv').config();
 
 
+
+
 class Moviejeeves extends React.Component{
   constructor(props){
     super(props);
@@ -27,16 +29,7 @@ class Moviejeeves extends React.Component{
     this.setState({platform: event.target.value})
   }
 
-  searchChange(event){
-    let genreQuery = this.state.genre;
-    let platformQuery =  this.state.platform;
-    let key = process.env.REACT_APP_API_KEY;
-    let baseUrl = 'https://api.themoviedb.org/3/movie/'
-    let randomMovie = Math.floor(Math.random() * 10000) + 1;
-    let language = '&language=en-US';
-
-    let query = baseUrl + randomMovie + '?api_key=' + key + language;
-
+  getMovie(query){
 
     Axios.get(query)
       .then(res => {
@@ -48,9 +41,24 @@ class Moviejeeves extends React.Component{
         console.log(this.state.movieName)
       })
       .catch(err => {
+        if(err.response.status === 404){
+          this.setState({movieName: 'Could not find movie, Please try again'});
+          this.setState({movieImg: ''});
+        }
         console.log(err);
     });
+  }
 
+  searchChange(event){
+    let genreQuery = this.state.genre;
+    let platformQuery =  this.state.platform;
+    let key = process.env.REACT_APP_API_KEY;
+    let baseUrl = 'https://api.themoviedb.org/3/movie/'
+    let randomMovie = Math.floor(Math.random() * 10000) + 1;
+    let language = '&language=en-US';
+
+    let query = baseUrl + randomMovie + '?api_key=' + key + language;
+    this.getMovie(query);
   }
 
   render(){
@@ -78,7 +86,7 @@ class Moviejeeves extends React.Component{
         </div>
         {this.state.movieDisplay === true && <div className='movie_display'>
           <span className='movie_title'>{this.state.movieName}</span>
-          <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} alt='Coming Soon'></img>
+          <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie_image' alt='Image Not Found'></img>
         </div>
         }
         <div className='button_container'>

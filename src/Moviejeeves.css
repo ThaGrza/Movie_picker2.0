@@ -29,7 +29,18 @@
   margin-top: 20px;
 }
 
+.movie_title{
+  margin: 10px;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
 .movie_display{
+  display: flex;
   text-align: center;
-  margin-top: 10px;
+  flex-direction: column;
+}
+
+.movie_image{
+  object-fit: contain;
 }
