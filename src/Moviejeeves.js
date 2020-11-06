@@ -3,6 +3,11 @@ import './Moviejeeves.css';
 import Axios from 'axios';
 require('dotenv').config();
 
+const language = '&language=en-US';
+const key = process.env.REACT_APP_API_KEY;
+const baseUrl = 'https://api.themoviedb.org/3/movie/'
+
+
 class Moviejeeves extends React.Component{
   constructor(props){
     super(props);
@@ -15,17 +20,50 @@ class Moviejeeves extends React.Component{
       runtime: '',
       popularity: '',
       description: '',
+      similarMovie: '',
+      movieId: '',
       movieImageNotFound: 'https://media1.tenor.com/images/ef4c232dab28b7581497cee047f21969/tenor.gif?itemid=5521264'
     };
     this.searchChange = this.searchChange.bind(this);
+    this.randomizer = this.randomizer.bind(this);
+    this.getSimilar = this.getSimilar.bind(this);
+  }
+
+  searchChange(event){
+    console.log(this);
+    this.randomizer(event);
+  }
+
+  getSimilar(event){
+    let query = baseUrl + this.state.movieId + '/similar' + '?api_key=' + key + language;
+    Axios.get(query)
+      .then(res => {
+        let simResults = Math.floor(Math.random() * res.data.results.length)
+        this.setState({movieTitle: res.data.results[simResults].title})
+        this.setState({movieImg: res.data.results[simResults].backdrop_path})
+        this.setState({releaseDate: res.data.results[simResults].release_date})
+        this.setState({genre: res.data.results[simResults].genre})
+        this.setState({runtime: res.data.results[simResults].runtime})
+        this.setState({popularity: res.data.results[simResults].popularity})
+        this.setState({description: res.data.results[simResults].overview})
+        console.log(simResults);
+        console.log(res);
+        this.setState({movieDisplay: true});
+        this.setState({similarMovie: true});
+      })
+      .catch(err => {
+        if(err === 'TypeError'){
+          this.getSimilar();
+        }else{
+        console.log(err);
+        }
+    });
   }
 
   randomizer(event){
-    let key = process.env.REACT_APP_API_KEY;
-    let baseUrl = 'https://api.themoviedb.org/3/movie/'
     let randomMovie = Math.floor(Math.random() * 300000) + 1;
-    let language = '&language=en-US';
     let query = baseUrl + randomMovie + '?api_key=' + key + language;
+    this.setState({movieId: randomMovie})
     this.getMovie(query);
   }
 
@@ -43,22 +81,21 @@ class Moviejeeves extends React.Component{
         if (res.data.backdrop_path === null){
           this.setState({movieDisplay: false});
           this.randomizer();
+          this.setState({similarMovie: false});
         }else{
           this.setState({movieDisplay: true});
+          this.setState({similarMovie: true})
         }
       })
       .catch(err => {
         if(err.response.status === 404){
-          this.randomizer()
+          this.randomizer();
         }
         console.log(err);
     });
   }
 
-  searchChange(event){
-    this.randomizer(event);
-  }
-
+  
   render(){
     return(
       <div className='movie_container'>
@@ -96,6 +133,9 @@ class Moviejeeves extends React.Component{
         }
         <div className='button_container'>
           <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
+        { this.state.similarMovie === true && 
+          <button className='find_movieButton' onClick={this.getSimilar}>Get Similar Movie</button>
+        }
         </div>
     </div>
     )
