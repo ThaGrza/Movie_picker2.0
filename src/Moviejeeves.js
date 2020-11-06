@@ -68,23 +68,28 @@ class Moviejeeves extends React.Component{
   }
 
   getMovie(query){
+    let genreTypes = [];
     Axios.get(query)
       .then(res => {
-        this.setState({movieTitle: res.data.title})
-        this.setState({movieImg: res.data.backdrop_path})
-        this.setState({releaseDate: res.data.release_date})
-        this.setState({genre: res.data.genre})
-        this.setState({runtime: res.data.runtime})
-        this.setState({popularity: res.data.popularity})
-        this.setState({description: res.data.overview})
         console.log(res);
-        if (res.data.backdrop_path === null){
+        if(res.data.adult === true || res.data.backdrop_path === null){
           this.setState({movieDisplay: false});
-          this.randomizer();
           this.setState({similarMovie: false});
+          this.randomizer();
         }else{
           this.setState({movieDisplay: true});
-          this.setState({similarMovie: true})
+          this.setState({similarMovie: true});
+          let genreNumber = res.data.genres.length;
+          for(let i = 0; i < genreNumber; i++){
+            genreTypes += res.data.genres[i].name + ' ';
+          }
+          this.setState({movieTitle: res.data.title})
+          this.setState({movieImg: res.data.backdrop_path})
+          this.setState({releaseDate: res.data.release_date})
+          this.setState({genre: genreTypes})
+          this.setState({runtime: res.data.runtime})
+          this.setState({popularity: res.data.popularity})
+          this.setState({description: res.data.overview})
         }
       })
       .catch(err => {
