@@ -1,0 +1,22 @@
+.footer-container {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+}
+
+.social-icon{
+  margin-top: 4rem;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+a{
+  text-decoration-line: none;
+}
+.date{
+  color: black;
+}

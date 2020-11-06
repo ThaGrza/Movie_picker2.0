@@ -42,6 +42,7 @@ class Moviejeeves extends React.Component{
         console.log(res);
         if (res.data.backdrop_path === null){
           this.setState({movieDisplay: false});
+          this.randomizer();
         }else{
           this.setState({movieDisplay: true});
         }
@@ -64,25 +65,32 @@ class Moviejeeves extends React.Component{
         {this.state.movieDisplay === true && <div className='movie_display'>
           <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie_image' alt='Found'/>
           <table className='movieTable'>
-            <tr><th>Title:</th>{this.state.movieTitle}</tr>
-            <tr><th>Release:</th>{this.state.releaseDate}</tr>
-            <tr><th>Genre:</th>{this.state.genre}</tr>
-            <tr><th>Runtime:</th>{this.state.runtime}</tr>
-            <tr><th>Popularity:</th>{this.state.popularity}</tr>
-            <tr><th>Description:</th>{this.state.description}</tr>
-          </table>
-        </div>
-        }
-        {this.state.movieDisplay === false && <div className='movie_display'>
-          <img src={this.state.movieImageNotFound} className='movie_image' alt='Not Found'/>
-          <span className='movie_image_NotFound'>Couldn't Find an Image</span>
-          <table className='movieTable'>
-            <tr><th>Title:</th>{this.state.movieTitle}</tr>
-            <tr><th>Release:</th>{this.state.releaseDate}</tr>
-            <tr><th>Genre:</th>{this.state.genre}</tr>
-            <tr><th>Runtime:</th>{this.state.runtime}</tr>
-            <tr><th>Popularity:</th>{this.state.popularity}</tr>
-            <tr><th>Description:</th>{this.state.description}</tr>
+            <tbody>
+              <tr>
+                <th className='table_heading'>Title:</th>
+                <td className='table_data'>{this.state.movieTitle}</td>
+              </tr>
+              <tr>
+                <th className='table_heading'>Release: Date</th>
+                <td className='table_data'>{this.state.releaseDate}</td>
+              </tr>
+              <tr>
+                <th className='table_heading'>Genre:</th>
+                <td className='table_data'>{this.state.genre}</td>
+              </tr>
+              <tr>
+                <th className='table_heading'>Runtime:</th>
+                <td className='table_data'>{this.state.runtime}</td>
+              </tr>
+              <tr>
+                <th className='table_heading'>Popularity:</th>
+                <td className='table_data'>{this.state.popularity}</td>
+              </tr>
+              <tr>
+                <th className='table_heading'>Description:</th>
+                <td className='table_data'>{this.state.description}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         }
