@@ -30,7 +30,6 @@ class Moviejeeves extends React.Component{
   }
 
   searchChange(event){
-    console.log(this);
     this.randomizer(event);
   }
 
@@ -39,23 +38,27 @@ class Moviejeeves extends React.Component{
     Axios.get(query)
       .then(res => {
         let simResults = Math.floor(Math.random() * res.data.results.length)
-        this.setState({movieTitle: res.data.results[simResults].title})
-        this.setState({movieImg: res.data.results[simResults].backdrop_path})
-        this.setState({releaseDate: res.data.results[simResults].release_date})
-        this.setState({genre: res.data.results[simResults].genre})
-        this.setState({runtime: res.data.results[simResults].runtime})
-        this.setState({popularity: res.data.results[simResults].popularity})
-        this.setState({description: res.data.results[simResults].overview})
-        console.log(simResults);
-        console.log(res);
-        this.setState({movieDisplay: true});
-        this.setState({similarMovie: true});
-      })
-      .catch(err => {
-        if(err === 'TypeError'){
+        if(res.data.adult === true || res.data.backdrop_path === null){
           this.getSimilar();
         }else{
-        console.log(err);
+          this.setState({movieTitle: res.data.results[simResults].title})
+          this.setState({movieImg: res.data.results[simResults].backdrop_path})
+          this.setState({releaseDate: res.data.results[simResults].release_date})
+          this.setState({genre: res.data.results[simResults].genre})
+          this.setState({runtime: res.data.results[simResults].runtime})
+          this.setState({popularity: res.data.results[simResults].popularity})
+          this.setState({description: res.data.results[simResults].overview})
+          this.setState({movieDisplay: true});
+          this.setState({similarMovie: true});
+        }
+      })
+      .catch(err => {
+        if(err.response === 'TypeError'){
+          this.getSimilar();
+        }else{
+          this.setState({movieDisplay: false})
+          this.setState({movieTitle: "No Similar Movies Found, Try Finding Another Movie!"})
+          console.log(err);
         }
     });
   }
@@ -73,7 +76,6 @@ class Moviejeeves extends React.Component{
       .then(res => {
         console.log(res);
         if(res.data.adult === true || res.data.backdrop_path === null){
-          this.setState({movieDisplay: false});
           this.setState({similarMovie: false});
           this.randomizer();
         }else{
@@ -100,10 +102,15 @@ class Moviejeeves extends React.Component{
     });
   }
 
-  
   render(){
     return(
       <div className='movie_container'>
+        {this.state.movieDisplay === false && <div className='movie_display'>
+          <img src={this.state.movieImageNotFound} className='movie_image' alt='Not Found'/>
+          <h1 className='noMovieFound'>{this.state.movieTitle}</h1>
+          </div>
+        }
+        
         {this.state.movieDisplay === true && <div className='movie_display'>
           <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie_image' alt='Found'/>
           <table className='movieTable'>
