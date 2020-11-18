@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const language = '&language=en-US';
 const key = process.env.REACT_APP_API_KEY;
-const baseUrl = 'https://api.themoviedb.org/3/movie/'
+const baseUrl = 'https://api.themoviedb.org/3/movie/';
+const similarSearch= '/similar?api_key=';
 
 
 class Moviejeeves extends React.Component{
@@ -34,7 +35,7 @@ class Moviejeeves extends React.Component{
   }
 
   getSimilar(event){
-    let query = baseUrl + this.state.movieId + '/similar' + '?api_key=' + key + language;
+    let query = baseUrl + this.state.movieId + similarSearch + key + language;
     Axios.get(query)
       .then(res => {
         let simResults = Math.floor(Math.random() * res.data.results.length)
