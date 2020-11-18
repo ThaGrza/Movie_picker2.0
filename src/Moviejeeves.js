@@ -17,9 +17,6 @@ class Moviejeeves extends React.Component{
       movieImg: '',
       movieTitle: '',
       releaseDate: '',
-      genre: '',
-      runtime: '',
-      popularity: '',
       description: '',
       similarMovie: '',
       movieId: '',
@@ -38,16 +35,15 @@ class Moviejeeves extends React.Component{
     let query = baseUrl + this.state.movieId + similarSearch + key + language;
     Axios.get(query)
       .then(res => {
+        console.log(res);
         let simResults = Math.floor(Math.random() * res.data.results.length)
+        console.log(simResults);
         if(res.data.adult === true || res.data.backdrop_path === null){
           this.getSimilar();
         }else{
           this.setState({movieTitle: res.data.results[simResults].title})
           this.setState({movieImg: res.data.results[simResults].backdrop_path})
           this.setState({releaseDate: res.data.results[simResults].release_date})
-          this.setState({genre: res.data.results[simResults].genre})
-          this.setState({runtime: res.data.results[simResults].runtime})
-          this.setState({popularity: res.data.results[simResults].popularity})
           this.setState({description: res.data.results[simResults].overview})
           this.setState({movieDisplay: true});
           this.setState({similarMovie: true});
@@ -89,9 +85,6 @@ class Moviejeeves extends React.Component{
           this.setState({movieTitle: res.data.title})
           this.setState({movieImg: res.data.backdrop_path})
           this.setState({releaseDate: res.data.release_date})
-          this.setState({genre: genreTypes})
-          this.setState({runtime: res.data.runtime})
-          this.setState({popularity: res.data.popularity})
           this.setState({description: res.data.overview})
         }
       })
@@ -121,20 +114,8 @@ class Moviejeeves extends React.Component{
                 <td className='table_data'>{this.state.movieTitle}</td>
               </tr>
               <tr>
-                <th className='table_heading'>Release: Date</th>
+                <th className='table_heading'>Released:</th>
                 <td className='table_data'>{this.state.releaseDate}</td>
-              </tr>
-              <tr>
-                <th className='table_heading'>Genre:</th>
-                <td className='table_data'>{this.state.genre}</td>
-              </tr>
-              <tr>
-                <th className='table_heading'>Runtime:</th>
-                <td className='table_data'>{this.state.runtime}</td>
-              </tr>
-              <tr>
-                <th className='table_heading'>Popularity:</th>
-                <td className='table_data'>{this.state.popularity}</td>
               </tr>
               <tr>
                 <th className='table_heading'>Description:</th>
