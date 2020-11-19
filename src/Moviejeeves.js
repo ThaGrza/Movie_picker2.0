@@ -38,7 +38,7 @@ class Moviejeeves extends React.Component{
         console.log(res);
         let simResults = Math.floor(Math.random() * res.data.results.length)
         console.log(simResults);
-        if(res.data.adult === true || res.data.backdrop_path === null){
+        if(res.data.adult === true || res.data.results[simResults].backdrop_path === null){
           this.getSimilar();
         }else{
           this.setState({movieTitle: res.data.results[simResults].title})
@@ -51,10 +51,11 @@ class Moviejeeves extends React.Component{
       })
       .catch(err => {
         if(err.response === 'TypeError'){
-          this.getSimilar();
+          this.randomizer();
+          console.log(err);
         }else{
           this.setState({movieDisplay: false})
-          this.setState({movieTitle: "No Similar Movies Found, Try Finding Another Movie!"})
+          this.setState({movieTitle: "No Similar Movies Found, Try Finding Another Movie"})
           console.log(err);
         }
     });
@@ -68,7 +69,6 @@ class Moviejeeves extends React.Component{
   }
 
   getMovie(query){
-    let genreTypes = [];
     Axios.get(query)
       .then(res => {
         console.log(res);
@@ -78,10 +78,6 @@ class Moviejeeves extends React.Component{
         }else{
           this.setState({movieDisplay: true});
           this.setState({similarMovie: true});
-          let genreNumber = res.data.genres.length;
-          for(let i = 0; i < genreNumber; i++){
-            genreTypes += res.data.genres[i].name + ' ';
-          }
           this.setState({movieTitle: res.data.title})
           this.setState({movieImg: res.data.backdrop_path})
           this.setState({releaseDate: res.data.release_date})
@@ -104,7 +100,7 @@ class Moviejeeves extends React.Component{
           <h1 className='noMovieFound'>{this.state.movieTitle}</h1>
           </div>
         }
-        
+
         {this.state.movieDisplay === true && <div className='movie_display'>
           <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie_image' alt='Found'/>
           <table className='movieTable'>
@@ -126,9 +122,9 @@ class Moviejeeves extends React.Component{
         </div>
         }
         <div className='button_container'>
-          <button className='find_movieButton' onClick={this.searchChange}>MOVIESSS</button>
-        { this.state.similarMovie === true && 
-          <button className='find_movieButton' onClick={this.getSimilar}>Get Similar Movie</button>
+          <button className='find_movieButton' onClick={this.searchChange}>Randomizer</button>
+        { this.state.similarMovie === true &&
+          <button className='find_movieButton' onClick={this.getSimilar}>Similar To This</button>
         }
         </div>
     </div>

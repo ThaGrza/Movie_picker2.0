@@ -20,9 +20,9 @@
 
 .find_movieButton{
   border-radius: 5px;
-  background-color: red;
+  background-color: rgb(39, 136, 216);
   text-align: center;
-  font-size: 34px;
+  font-size: 1.2rem;
   color: black;
   font-weight: 800;
   padding: 20px;
@@ -39,21 +39,23 @@
   flex-direction: column;
 }
 
-.movie_title{
-  margin: 10px;
-  font-weight: 600;
-  font-size: 2rem;
-}
-
 .movie_image{
   border-radius: 10px;
   object-fit: contain;
+  margin-bottom: 15px;
 }
 
-img{
-  border-radius: 5px;
+.movieTable{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  background-color: whitesmoke;
 }
 
-.noMovieFound{
-  color: black;
+.table_data{
+  font-size: 18px;
+  line-height: 2rem;
 }
+
+
