@@ -35,8 +35,14 @@
 
 .movie_display{
   display: flex;
-  text-align: center;
   flex-direction: column;
+  font-weight: 800;
+  font-size: 1.5rem;
+  display: flex;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  color: white;
 }
 
 .movie_image{
@@ -45,17 +51,6 @@
   margin-bottom: 15px;
 }
 
-.movieTable{
-  display: flex;
-  width: 80%;
-  margin: auto;
-  border-radius: 10px;
-  background-color: whitesmoke;
+.movieDescription{
+  
 }
-
-.table_data{
-  font-size: 18px;
-  line-height: 2rem;
-}
-
-

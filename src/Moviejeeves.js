@@ -16,7 +16,6 @@ class Moviejeeves extends React.Component{
       movieDisplay: '',
       movieImg: '',
       movieTitle: '',
-      releaseDate: '',
       description: '',
       similarMovie: '',
       movieId: '',
@@ -103,22 +102,10 @@ class Moviejeeves extends React.Component{
 
         {this.state.movieDisplay === true && <div className='movie_display'>
           <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie_image' alt='Found'/>
-          <table className='movieTable'>
-            <tbody>
-              <tr>
-                <th className='table_heading'>Title:</th>
-                <td className='table_data'>{this.state.movieTitle}</td>
-              </tr>
-              <tr>
-                <th className='table_heading'>Released:</th>
-                <td className='table_data'>{this.state.releaseDate}</td>
-              </tr>
-              <tr>
-                <th className='table_heading'>Description:</th>
-                <td className='table_data'>{this.state.description}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className='movieInfo'>
+            <h1 className='movieTitle'>{this.state.movieTitle}</h1>
+            <p className='movieDescription'>{this.state.description}</p>
+          </div>
         </div>
         }
         <div className='button_container'>
