@@ -1,8 +1,16 @@
 body {
-  background-image: url(movieChairs.jpg);
+  max-width: 100%;
+  background-image: url(gumballs.jpeg);
   background-size: cover;
-  margin: auto;
   font-family: 'Merriweather', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.app_container{
+  opacity: 10;
+  background-color: white;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
 }

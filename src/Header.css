@@ -2,18 +2,18 @@
   text-align: center; 
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 5px;
   justify-content: center;
+  opacity: .9;
 }
 
 .header{
-  color: rgb(224, 95, 214);
+  color: red;
   font-size: 5rem;
   font-weight: 800;
   margin: 0;
 }
 
 .header_text{
-  color: white;
+  color: rgb(243, 86, 235);
   font-weight: 800;
 }
