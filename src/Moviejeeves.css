@@ -51,6 +51,16 @@
   margin-bottom: 15px;
 }
 
+.movieInfo{
+  width: 80%;
+  margin: auto;
+}
+
+.movieTitle{
+  text-align: center;
+}
 .movieDescription{
-  
+  text-indent: 3rem;
+  font-size: 1.3rem;
+  line-height: 2.4rem;
 }
