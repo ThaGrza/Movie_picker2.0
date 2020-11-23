@@ -7,13 +7,13 @@
 }
 
 .header{
-  color: red;
+  color: rgb(214, 28, 205);
   font-size: 5rem;
   font-weight: 800;
   margin: 0;
 }
 
 .header_text{
-  color: rgb(243, 86, 235);
+  color: rgb(245, 85, 11);
   font-weight: 800;
 }

@@ -6,7 +6,7 @@ Simple site to find random movies to watch.
  ## Motivation
   I wanted to make a fun app to pick random movies because I'm so indecisive.
  ## How to
-
+  Simply go to https://gumballmovies.netlify.app/ and click the Randomizer!
 
  ## Tech/framework used
  <b> Built with </b>
