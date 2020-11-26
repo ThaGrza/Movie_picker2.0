@@ -1,7 +1,7 @@
-# Movie Jeeves
+# Gumball Movies
 Simple site to find random movies to watch.
  ## Screenshots / Gifs
- ![Screenshot](/src/images/screenshot.png)
+ ![Screenshot](/screenshot.png)
 
  ## Motivation
   I wanted to make a fun app to pick random movies because I'm so indecisive.
