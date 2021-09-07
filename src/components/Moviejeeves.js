@@ -14,6 +14,8 @@ class Moviejeeves extends React.Component{
     super(props);
     this.state = {
       movieDisplay: '',
+      movieLang: '',
+      movieRelease: '',
       movieImg: '',
       movieTitle: '',
       description: '',
@@ -58,6 +60,10 @@ class Moviejeeves extends React.Component{
           console.log(err);
         }
     });
+  }
+
+  truncate(str, n){
+     return str?.length > n ? str.substr(0, n -1) + ' ...' : str;
   }
 
   randomizer(event){

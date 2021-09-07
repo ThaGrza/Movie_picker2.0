@@ -1,8 +1,5 @@
 body {
-  max-width: 100%;
-  background-image: url(gumballs.jpeg);
-  background-size: cover;
-  font-family: 'Merriweather', serif;
+  font-family: 'Acme';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,6 +8,4 @@ body {
   opacity: 10;
   background-color: white;
   border-radius: 10px;
-  width: 80%;
-  margin: auto;
 }
