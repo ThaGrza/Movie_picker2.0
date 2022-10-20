@@ -4,12 +4,13 @@ import Axios from 'axios';
 require('dotenv').config();
 
 const language = '&language=en-US';
-const key = process.env.REACT_APP_API_KEY;
+// const key = process.env.REACT_APP_API_KEY;
+const key = '5f9630b664fee3f1c639e0ae94090867'
 const baseUrl = 'https://api.themoviedb.org/3/movie/';
 const similarSearch= '/similar?api_key=';
 
 
-class Moviejeeves extends React.Component{
+export default class Moviejeeves extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -99,30 +100,28 @@ class Moviejeeves extends React.Component{
 
   render(){
     return(
-      <div className='movie_container'>
-        {this.state.movieDisplay === false && <div className='movie_display'>
-          <img src={this.state.movieImageNotFound} className='movie_image' alt='Not Found'/>
+      <div className='movie-container'>
+        {this.state.movieDisplay === false && <div className='movie-display'>
+          <img src={this.state.movieImageNotFound} className='movie-image' alt='Not Found'/>
           <h1 className='noMovieFound'>{this.state.movieTitle}</h1>
           </div>
         }
 
-        {this.state.movieDisplay === true && <div className='movie_display'>
-          <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie_image' alt='Found'/>
-          <div className='movieInfo'>
-            <h1 className='movieTitle'>{this.state.movieTitle}</h1>
-            <p className='movieDescription'>{this.state.description}</p>
+        {this.state.movieDisplay === true && <div className='movie-display'>
+          <div className='movie-info'>
+            <h1 className='movie-title'>{this.state.movieTitle}</h1>
+            <img src={'https://image.tmdb.org/t/p/w500/' + this.state.movieImg} className='movie-image' alt='Found'/>
+            <p className='movie-desc'>{this.state.description}</p>
           </div>
         </div>
         }
-        <div className='button_container'>
-          <button className='find_movieButton' onClick={this.searchChange}>Randomizer</button>
+        <div className='button-container'>
+          <button className='find-movieButton' onClick={this.searchChange}>Randomizer</button>
         { this.state.similarMovie === true &&
-          <button className='find_movieButton' onClick={this.getSimilar}>Similar To This</button>
+          <button className='find-movieButton' onClick={this.getSimilar}>Similar To This</button>
         }
         </div>
     </div>
     )
   }
 }
-
-export default Moviejeeves;

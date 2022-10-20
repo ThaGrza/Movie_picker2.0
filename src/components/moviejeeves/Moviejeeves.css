@@ -1,0 +1,42 @@
+.movie-container {
+  display: grid;
+  margin-top: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.movie-display {
+  width: 50%;
+  margin: auto;
+}
+.movie-image {
+  width: 90%;
+}
+
+.movie-title {
+  font-size: 3rem;
+}
+
+.movie-desc {
+  font-size: 1.2rem;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 0;
+  justify-self: center;
+}
+
+.find-movieButton {
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: rgb(214, 103, 220);
+  color: white;
+  border-radius: 5%;
+  padding: 1rem;
+  margin-right: 1rem;
+  transition: transform 0.3s;
+}
+.find-movieButton:hover {
+  transform: scale(1.07);
+}
