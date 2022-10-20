@@ -4,8 +4,7 @@ import Axios from 'axios';
 require('dotenv').config();
 
 const language = '&language=en-US';
-// const key = process.env.REACT_APP_API_KEY;
-const key = '5f9630b664fee3f1c639e0ae94090867'
+const key = process.env.REACT_APP_API_KEY;
 const baseUrl = 'https://api.themoviedb.org/3/movie/';
 const similarSearch= '/similar?api_key=';
 
